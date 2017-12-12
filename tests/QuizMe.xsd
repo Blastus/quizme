@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" targetNamespace="QuizMe" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="testbank" type="quiz:testbankType" xmlns:quiz="QuizMe"/>
+  <xs:complexType name="chapterType">
+    <xs:sequence>
+      <xs:element type="quiz:sectionType" name="section" maxOccurs="unbounded" minOccurs="0" xmlns:quiz="QuizMe"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="name"/>
+  </xs:complexType>
+  <xs:complexType name="testbankType">
+    <xs:sequence>
+      <xs:element type="quiz:chapterType" name="chapter" maxOccurs="unbounded" minOccurs="0" xmlns:quiz="QuizMe"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="name"/>
+  </xs:complexType>
+  <xs:complexType name="categoryType">
+    <xs:sequence>
+      <xs:element type="quiz:factType" name="fact" maxOccurs="unbounded" minOccurs="0" xmlns:quiz="QuizMe"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="type"/>
+  </xs:complexType>
+  <xs:complexType name="sectionType">
+    <xs:sequence>
+      <xs:element type="quiz:categoryType" name="category" maxOccurs="unbounded" minOccurs="0" xmlns:quiz="QuizMe"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="name"/>
+  </xs:complexType>
+  <xs:complexType name="factType">
+    <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:element type="xs:string" name="question"/>
+      <xs:element type="xs:string" name="answer"/>
+    </xs:choice>
+    <xs:attribute type="xs:string" name="type"/>
+  </xs:complexType>
+</xs:schema>
